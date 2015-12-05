@@ -1,5 +1,14 @@
 
 class HandEvaluator(object):
+    def __init__(self, hist_value=None, hist_suite=None):
+        pass
+
+    def evaluate(self, hand):
+        pass
+
+
+"""
+class HandEvaluator(object):
     def __init__(self, histo_value=None, hist_suite=None,
                  histo_primative_results=None, handd=None):
         self.histo_value = [0, 0, 0, 0, 0, 0, 0, 0 ,0 ,0 ,0 ,0 ,0]
@@ -40,32 +49,6 @@ class HandEvaluator(object):
         else:
             return "Nothing"
 
-    def _clear_histos(self):
-        for k in range(13):
-            self.histo_value[k] = 0
-        for k in range(4):
-            self.histo_suite[k] = 0
-        self.histo_primative_results['Pair'] = 0
-        self.histo_primative_results['Trips'] = 0
-        self.histo_primative_results['Quads'] = 0
-        self.histo_primative_results['Straight'] = 0
-        self.histo_primative_results['Flush'] = 0
-
-    def erase_hand(self):
-        # self.hand = None
-        self._clear_histos()
-
-    def _set_hand(self, handd):
-        self.handd = handd
-        self.handd.sort(key=lambda x: x._value, reverse=False)
-        # self.hand.print_hand()
-        self._diagnose_hand(self.handd)
-
-    def _diagnose_hand(self, hand):
-        for k in range(5):
-            self.histo_value[hand[k].get_value()-1] += 1
-            self.histo_suite[hand[k].get_suite()] += 1
-
     def _eval_pair(self):
         for k in range(13):
             if self.histo_value[k] == 2:
@@ -75,12 +58,12 @@ class HandEvaluator(object):
         for k in range(13):
             if self.histo_value[k] == 2:
                 return True
-            """
+
                 if k > 10 or k == 1:
                     return True
                 else:
                     return False
-            """
+
 
     def _eval_trips(self):
         for k in range(13):
@@ -157,4 +140,5 @@ class HandEvaluator(object):
         print "     Quads = %i" % self.histo_primative_results.get('Quads')
         print "     Straight = %i" % self.histo_primative_results.get('Straight')
         print "     Flush = %i" % self.histo_primative_results.get('Flush')
+"""
 
