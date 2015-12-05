@@ -60,8 +60,8 @@ class Flush(Eval):
 
 
 class Trips(Eval):
-    def __init__(self):
-        super(Quads, self).__init__("Trips")
+    def __init__(self, _eval_value):
+        super(Trips, self).__init__(_eval_value)
 
     def evaluate(self, hand, histo):
         pass
