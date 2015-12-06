@@ -11,9 +11,9 @@ class Eval(object):
         print "%s" % self._eval_value
 
 
-class EvalRoyalFlush(Eval):
+class RoyalFlush(Eval):
     def __init__(self):
-        super(EvalRoyalFlush, self).__init__("RoyalFlush")
+        super(RoyalFlush, self).__init__("RoyalFlush")
 
     def evaluate(self, hand, histo):
         pass
@@ -60,8 +60,8 @@ class Flush(Eval):
 
 
 class Trips(Eval):
-    def __init__(self, _eval_value):
-        super(Trips, self).__init__(_eval_value)
+    def __init__(self):
+        super(Trips, self).__init__("Trips")
 
     def evaluate(self, hand, histo):
         pass
@@ -75,9 +75,9 @@ class TwoPair(Eval):
         pass
 
 
-class EvalPair(Eval):
+class Pair(Eval):
     def __init__(self):
-        super(EvalPair, self).__init__("Pair")
+        super(Pair, self).__init__("Pair")
 
     def evaluate(self, hand, histo):
         pass

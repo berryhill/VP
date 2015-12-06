@@ -1,13 +1,26 @@
+"""
+from Histogram import Histogram
+from Eval import RoyalFlush, StraightFlush, Quads, FullHouse, Straight, Flush, Trips, TwoPair, Pair
+
 
 class HandEvaluator(object):
-    def __init__(self, hist_value=None, hist_suite=None):
-        pass
+    def __init__(self, histrogram=None, evals = None):
+        self.histogram = Histogram()
+        self.evals = [Histogram(), RoyalFlush(), StraightFlush(), Quads(), FullHouse(), Straight(),
+        Flush(), Trips(), TwoPair(), Pair()]
 
-    def evaluate(self, hand):
-        pass
+    def evaluate_hand(self, hand):
+        self.histogram.diagnose_hand(hand)
+        for k in range(9):
+            if self._evaluate(self.evals[k]) == True:
+                return self.evals[k]
 
+    def _evaluate(self, eval):
+        eval.evaluate()
 
 """
+
+
 class HandEvaluator(object):
     def __init__(self, histo_value=None, hist_suite=None,
                  histo_primative_results=None, handd=None):
@@ -15,11 +28,6 @@ class HandEvaluator(object):
         self.histo_suite = [0, 0, 0, 0]
         self.histo_primative_results = {
             'Pair': 0,
-            'Trips': 0,
-            'Quads': 0,
-            'Flush': 0,
-            'Straight': 0
-        }
 
     def evaluate_hand(self, hand):
         self._set_hand(hand)
@@ -140,5 +148,5 @@ class HandEvaluator(object):
         print "     Quads = %i" % self.histo_primative_results.get('Quads')
         print "     Straight = %i" % self.histo_primative_results.get('Straight')
         print "     Flush = %i" % self.histo_primative_results.get('Flush')
-"""
+
 
