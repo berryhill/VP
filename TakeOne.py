@@ -16,11 +16,11 @@ class TakeOne(Strategy):
             temp_payout = float(self.rate_hand_for_payout(hand, payout_table, video_poker))
             payout += temp_payout
             calcs += 1.0
+            global_calcs += 1
             for j in range(5):
                 if self._holds[j] == 0:
                     video_poker.return_card_to_deck(j)
         average_payout = payout / calcs
         video_poker.player_add_discard_pile()
-        # print average_payout
         return average_payout
 

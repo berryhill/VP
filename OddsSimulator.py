@@ -2,6 +2,7 @@ from Strategies import Strategies
 from VideoPoker import VideoPoker
 from PayoutTable import PayoutTable
 
+global_calcs = 0
 
 class OddsSimulator(object):
     def __init__(self, payout_table, video_poker=None, strategies=None, optimal_hold_list=None):
@@ -39,6 +40,8 @@ class OddsSimulator(object):
     def print_object_info(self, obj):
         obj.print_info()
         print ""
+
+    def print_percent_done(self, calcs):
 
 
 if __name__ == "__main__":
