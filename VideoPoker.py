@@ -22,6 +22,9 @@ class VideoPoker(object):
     def deal_player_indexed_card(self, index):
         self.player.add_card(self.dealer.deal_indexed_card(index))
 
+    def deal_player_indexed_card_from_strategy(self, index):
+        self.player.add_card(self.dealer.deck.pop(index))
+
     def player_submit_play(self):
         self.discard_pile = self.player.submit_play()
 

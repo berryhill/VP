@@ -12,10 +12,10 @@ class Strategy(list):
     def get_holds(self):
         return self._holds
 
-    def rate_hand_for_payout(self, hand, payout_table, hand_evaluator):
+    def rate_hand_for_payout(self, hand, payout_table, video_poker):
         # print "Hand before rate_hand_for_payout"
         # self.hand.print_hand()
-        rated_hand = hand_evaluator.evaluate_hand(copy.deepcopy(hand))
+        rated_hand = video_poker.hand_evaluator.evaluate_hand(copy.deepcopy(hand))
         # hand.erase_hand()
         if rated_hand == "RoyalFlush":
             return payout_table[0].get_payout_value()
@@ -39,7 +39,7 @@ class Strategy(list):
             return 0
 
     def print_info(self):
-        print "Take Type = %s" % self._type
+        # print "Take Type = %s" % self._type
         print "Holds = %s" % self._holds
 
 

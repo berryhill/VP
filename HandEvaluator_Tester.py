@@ -3,6 +3,7 @@ from Hand import Hand
 from Card import Card
 from HandEvaluator import HandEvaluator
 
+
 class HandEvaluator_Tester(unittest.TestCase):
     def setUp(self, hand=None, eval=None):
         self.hand = Hand()
@@ -44,11 +45,11 @@ class HandEvaluator_Tester(unittest.TestCase):
     def test_hand_pair(self):
         for k in range(5):
             self.hand.pop(0)
-        self.hand.append(Card(1, 11))
-        self.hand.append(Card(2, 11))
+        self.hand.append(Card(1, 12))
+        self.hand.append(Card(2, 12))
         self.hand.append(Card(1, 6))
         self.hand.append(Card(0, 4))
-        self.hand.append(Card(3, 10))
+        self.hand.append(Card(3, 9))
 
         self.assertTrue(self.eval.evaluate_hand(self.hand) == "Pair")
 

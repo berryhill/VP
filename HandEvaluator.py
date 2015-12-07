@@ -1,33 +1,17 @@
-"""
-from Histogram import Histogram
-from Eval import RoyalFlush, StraightFlush, Quads, FullHouse, Straight, Flush, Trips, TwoPair, Pair
-
-
-class HandEvaluator(object):
-    def __init__(self, histrogram=None, evals = None):
-        self.histogram = Histogram()
-        self.evals = [Histogram(), RoyalFlush(), StraightFlush(), Quads(), FullHouse(), Straight(),
-        Flush(), Trips(), TwoPair(), Pair()]
-
-    def evaluate_hand(self, hand):
-        self.histogram.diagnose_hand(hand)
-        for k in range(9):
-            if self._evaluate(self.evals[k]) == True:
-                return self.evals[k]
-
-    def _evaluate(self, eval):
-        eval.evaluate()
-
-"""
-
+import time
 
 class HandEvaluator(object):
     def __init__(self, histo_value=None, hist_suite=None,
-                 histo_primative_results=None, handd=None):
-        self.histo_value = [0, 0, 0, 0, 0, 0, 0, 0 ,0 ,0 ,0 ,0 ,0]
-        self.histo_suite = [0, 0, 0, 0]
-        self.histo_primative_results = {
-            'Pair': 0,
+                   histo_primative_results=None, hand=None):
+         self.histo_value = [0, 0, 0, 0, 0, 0, 0, 0 ,0 ,0 ,0 ,0 ,0]
+         self.histo_suite = [0, 0, 0, 0]
+         self.histo_primative_results = {
+             'Pair': 0,
+             'Trips': 0,
+             'Quads': 0,
+             'Flush': 0,
+             'Straight': 0
+         }
 
     def evaluate_hand(self, hand):
         self._set_hand(hand)
@@ -57,6 +41,32 @@ class HandEvaluator(object):
         else:
             return "Nothing"
 
+    def _clear_histos(self):
+         for k in range(13):
+             self.histo_value[k] = 0
+         for k in range(4):
+             self.histo_suite[k] = 0
+         self.histo_primative_results['Pair'] = 0
+         self.histo_primative_results['Trips'] = 0
+         self.histo_primative_results['Quads'] = 0
+         self.histo_primative_results['Straight'] = 0
+         self.histo_primative_results['Flush'] = 0
+
+    def erase_hand(self):
+         # self.hand = None
+         self._clear_histos()
+
+    def _set_hand(self, hand):
+         self.hand = hand
+         self.hand.sort(key=lambda x: x._value, reverse=False)
+         # self.hand.print_hand()
+         self._diagnose_hand(self.hand)
+
+    def _diagnose_hand(self, hand):
+         for k in range(5):
+             self.histo_value[hand[k].get_value()-1] += 1
+             self.histo_suite[hand[k].get_suite()] += 1
+
     def _eval_pair(self):
         for k in range(13):
             if self.histo_value[k] == 2:
@@ -65,13 +75,10 @@ class HandEvaluator(object):
     def _eval_paying_pair(self):
         for k in range(13):
             if self.histo_value[k] == 2:
-                return True
-
-                if k > 10 or k == 1:
+                if k >= 10 or k == 0:
                     return True
                 else:
                     return False
-
 
     def _eval_trips(self):
         for k in range(13):
@@ -95,10 +102,10 @@ class HandEvaluator(object):
                 pass
 
     def _eval_straight(self):
-        if self.handd[4].get_value() - self.handd[0].get_value() == 4:
+        if self.hand[4].get_value() - self.hand[0].get_value() == 4:
             self.histo_primative_results['Straight'] = 1
-        elif self.handd[0].get_value() == 1:
-            if self.handd[1].get_value() == 10:
+        elif self.hand[0].get_value() == 1:
+            if self.hand[1].get_value() == 10:
                 self.histo_primative_results['Straight'] = 1
                 return True
         else:
@@ -118,7 +125,7 @@ class HandEvaluator(object):
     def _eval_straight_flush(self):
         if self.histo_primative_results['Flush'] and \
             self.histo_primative_results['Straight'] and \
-            self.handd[1].get_value() != 10:
+            self.hand[1].get_value() != 10:
                 return True
         else:
             return False
@@ -126,7 +133,7 @@ class HandEvaluator(object):
     def _eval_royal_flush(self):
         if self.histo_primative_results['Flush'] and \
             self.histo_primative_results['Straight'] and \
-            self.handd[1].get_value() == 10:
+            self.hand[1].get_value() == 10:
                 return True
         else:
             return False

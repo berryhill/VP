@@ -9,9 +9,9 @@ class Hand(list):
     def get_card(self, selection):
         return self[selection]
 
-    def print_hand(self):
+    def print_info(self):
         print "--------------------------------"
         print "Hand = "
         for k in range(len(self)):
-            print "     Card %i = %i %i" % (k, self[k].get_suite(), self[k].get_value())
+            print "     Card %i = %i %i" % (k, self[k].get_value(), self[k].get_suite())
         print "--------------------------------"

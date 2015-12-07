@@ -11,11 +11,8 @@ class Strategies(list):
         super(Strategies, self).__init__()
         self._populate_strategies()
 
-    def set_top_strategy(self, strategy):
-        self._top_strategy = strategy
-
-    def get_top_strategy(self):
-        return self._top_strategy
+    def get_strategy(self, index):
+        return self[index]
 
     def _populate_strategies(self):
         self.append(TakeZero([1, 1, 1, 1, 1]))
