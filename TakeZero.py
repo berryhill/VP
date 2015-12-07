@@ -1,4 +1,5 @@
 from Strategy import Strategy
+import time
 
 
 class TakeZero(Strategy):
@@ -6,6 +7,9 @@ class TakeZero(Strategy):
         super(TakeZero, self).__init__("Take Zero", holds)
 
     def get_payout_from_strategy(self, hand, payout_table, video_poker):
-        average_payout = float(self.rate_hand_for_payout(hand, payout_table, video_poker))
-        # print average_payout
-        return average_payout
+        start = time.clock()
+        payout = float(self.rate_hand_for_payout(hand, payout_table, video_poker))
+        elapsed_time = time.clock() - start
+        print "Time Taken TakeZero = %f " % elapsed_time
+        return payout
+

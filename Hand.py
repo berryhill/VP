@@ -11,7 +11,7 @@ class Hand(list):
 
     def print_info(self):
         print "--------------------------------"
-        print "Hand = "
-        for k in range(len(self)):
-            print "     Card %i = %i %i" % (k, self[k].get_value(), self[k].get_suite())
+        print "Hand: "
+        for k in range(5):
+            self[k].print_info()
         print "--------------------------------"

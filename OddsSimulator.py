@@ -2,9 +2,8 @@ from Strategies import Strategies
 from VideoPoker import VideoPoker
 from PayoutTable import PayoutTable
 
-global_calcs = 0
-
 class OddsSimulator(object):
+    global_calc = 0
     def __init__(self, payout_table, video_poker=None, strategies=None, optimal_hold_list=None):
         self.video_poker = VideoPoker()
         self.strategies = Strategies()
@@ -16,23 +15,25 @@ class OddsSimulator(object):
         for k in range(32):
             self.optimal_holds_list[k] = \
                 self._run_strategy(hand, self.strategies[k], self.payout_table, self.video_poker)
-        max = 0
+        max = 0.0
+        max_index = -1
         for k in range(32):
             if self.optimal_holds_list[k] > max:
-                max = k
+                max_index = k
         # print sum(self.optimal_holds_list) / 32.0
+        print ""
+        print "/////////////////////////////"
         print "Player Should Hold: "
-        self._standard_io_formatter(hand, self.optimal_holds_list)
-        return self.strategies[max].get_holds()
+        self._standard_io_formatter(hand, self.strategies[max_index])
+        print "Optimal Payout for this hand: %f" % max
 
     def populate_list_to_object(self, obj, ls):
         obj.populate(ls)
 
-    def _standard_io_formatter(self, hand, holds):
-        print "Player should keep cards: "
+    def _standard_io_formatter(self, hand, strategies):
         for k in range(5):
-            if self.optimal_holds_list[k] == 1:
-                print "Card: value= %i, suite= %i" % (hand[k].get_value(), hand[k].get_suite())
+            if strategies[k] == 1:
+                self.print_object_info(hand[k])
 
     def _run_strategy(self, hand, strategy, payout_table, video_poker):
         return strategy.get_payout_from_strategy(hand, payout_table, video_poker)
@@ -42,12 +43,5 @@ class OddsSimulator(object):
         print ""
 
     def print_percent_done(self, calcs):
-
-
-if __name__ == "__main__":
-    print "Started!"
-    o = OddsSimulator("none")
-    for k in range(32):
-        o.print_object_info(o.strategies[k])
-    o.video_poker.dealer.deck.print_deck()
+        pass
 

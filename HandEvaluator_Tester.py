@@ -2,6 +2,7 @@ import unittest
 from Hand import Hand
 from Card import Card
 from HandEvaluator import HandEvaluator
+import time
 
 
 class HandEvaluator_Tester(unittest.TestCase):
@@ -10,6 +11,7 @@ class HandEvaluator_Tester(unittest.TestCase):
         self.eval = HandEvaluator()
 
     def test_hand_fullhouse(self):
+
         for k in range(5):
             self.hand.pop(0)
         self.hand.append(Card(1, 1))
@@ -17,8 +19,10 @@ class HandEvaluator_Tester(unittest.TestCase):
         self.hand.append(Card(1, 2))
         self.hand.append(Card(0, 2))
         self.hand.append(Card(3, 1))
-
+        start = time.clock()
         self.assertTrue(self.eval.evaluate_hand(self.hand) == "FullHouse")
+        elapsed_time = time.clock() - start
+        print "Elapsed Time = %f" % elapsed_time
 
     def test_hand_straight(self):
         for k in range(5):
@@ -116,8 +120,10 @@ class HandEvaluator_Tester(unittest.TestCase):
         self.hand.append(Card(2, 3))
         self.hand.append(Card(2, 13))
         self.hand.append(Card(3, 10))
-
-        self.assertTrue(self.eval.evaluate_hand(self.hand) == "Nothing")
+        start = time.clock()
+        self.assertFalse(self.eval.evaluate_hand(self.hand) == "Nothing")
+        elapsed_time = time.clock() - start
+        print "Elapsed Time = %f" % elapsed_time
 
     def test_hand_not_straight_flush(self):
         for k in range(5):

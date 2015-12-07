@@ -1,11 +1,12 @@
 from Strategy import Strategy
-
+import time
 
 class TakeTwo(Strategy):
     def __init__(self, holds):
         super(TakeTwo, self).__init__("Take Two", holds)
 
     def get_payout_from_strategy(self, hand, payout_table, video_poker):
+        start = time.clock()
         payout = 0.0
         calcs = 0.0
         video_poker.player.add_holds(self.get_holds())
@@ -29,8 +30,9 @@ class TakeTwo(Strategy):
                 calcs += 1.0
                 video_poker.insert_card_to_deck(temp_index_two, j)
             video_poker.insert_card_to_deck(temp_index_one, k)
-        average_payout = payout / calcs
         video_poker.player_add_discard_pile()
+        elapsed_time = time.clock() - start
+        print "Time Taken TakeTwo = %f" % elapsed_time
         # print average_payout
         # print calcs
-        return average_payout
+        return payout / calcs

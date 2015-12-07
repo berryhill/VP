@@ -19,6 +19,7 @@ if __name__ == "__main__":
     vp_driver.odds_simulator.populate_list_to_object(vp_driver.odds_simulator.video_poker,
                                                      map(int, raw_input("     int int int int int \n").split()))
     print ""
+    # vp_driver.odds_simulator.video_poker.player.hand.print_info()
     vp_driver.odds_simulator.print_object_info(vp_driver.odds_simulator.video_poker.player.hand)
 
     print "VPDriver Calculating"
