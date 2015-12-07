@@ -7,5 +7,5 @@ class TakeZero(Strategy):
 
     def get_payout_from_strategy(self, hand, payout_table, video_poker):
         average_payout = float(self.rate_hand_for_payout(hand, payout_table, video_poker))
-        print average_payout
+        # print average_payout
         return average_payout

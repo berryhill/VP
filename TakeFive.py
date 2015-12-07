@@ -52,6 +52,6 @@ class TakeFive(Strategy):
         video_poker.player_add_discard_pile()
         average_payout = payout / calcs
         print "Time Taken = %f" % time.clock() - start
-        print average_payout
-        print calcs
+        # print average_payout
+        # print calcs
         return average_payout

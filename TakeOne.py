@@ -21,6 +21,6 @@ class TakeOne(Strategy):
                     video_poker.return_card_to_deck(j)
         average_payout = payout / calcs
         video_poker.player_add_discard_pile()
-        print average_payout
+        # print average_payout
         return average_payout
 

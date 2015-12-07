@@ -37,6 +37,6 @@ class TakeThree(Strategy):
             video_poker.insert_card_to_deck(temp_index_one, k)
         average_payout = payout / calcs
         video_poker.player_add_discard_pile()
-        print average_payout
-        print calcs
+        # print average_payout
+        # print calcs
         return average_payout
