@@ -16,23 +16,26 @@ class OddsSimulator(object):
             self.optimal_holds_list[k] = \
                 self._run_strategy(hand, self.strategies[k], self.payout_table, self.video_poker)
         max = 0.0
-        max_index = -1
+        max_index = 0
         for k in range(32):
             if self.optimal_holds_list[k] > max:
                 max_index = k
+                max = self.optimal_holds_list[k]
         # print sum(self.optimal_holds_list) / 32.0
         print ""
         print "/////////////////////////////"
-        print "Player Should Hold: "
-        self._standard_io_formatter(hand, self.strategies[max_index])
-        print "Optimal Payout for this hand: %f" % max
+        print ""
+        # print "Player Should Hold: "
+        # self._standard_io_formatter(hand, self.strategies[max_index])
+        print ""
+        print "Optimal Payout for the best strategy for the Hand given: %f" % max
 
     def populate_list_to_object(self, obj, ls):
         obj.populate(ls)
 
-    def _standard_io_formatter(self, hand, strategies):
+    def _standard_io_formatter(self, hand, strategy):
         for k in range(5):
-            if strategies[k] == 1:
+            if strategy[k] == 1:
                 self.print_object_info(hand[k])
 
     def _run_strategy(self, hand, strategy, payout_table, video_poker):

@@ -7,7 +7,7 @@ from TakeFive import TakeFive
 
 
 class Strategies(list):
-    def __init__(self, _top_strategy=None):
+    def __init__(self):
         super(Strategies, self).__init__()
         self._populate_strategies()
 

@@ -51,7 +51,7 @@ class TakeFive(Strategy):
             video_poker.insert_card_to_deck(temp_index_one, k)
         video_poker.player_add_discard_pile()
         elapsed_time = time.clock() - start
-        print "Time Taken = %f" % elapsed_time
+        print "Time Taken TakeFive= %f" % elapsed_time
         # print average_payout
         # print calcs
         return payout / calcs
